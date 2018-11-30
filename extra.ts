@@ -23,6 +23,9 @@ class Coche{
         this.velocidad = velocidad;
         this.extras = extras;
     }
+    addExtra(extra:Extra){
+        this.extras.push(extra);
+    }
 
 }
 let extra = new Extra(12,'assets/gucci.jpg');
