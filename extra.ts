@@ -18,6 +18,12 @@ class Coche{
     velocidad: number;
     extras: Extra[];
 
+    constructor(nombre:string, velocidad:number, extras: Extra[]){
+        this.nombre = nombre;
+        this.velocidad = velocidad;
+        this.extras = extras;
+    }
+
 }
 let extra = new Extra(12,'assets/gucci.jpg');
 let container = <HTMLElement>document.getElementById("imagen");
