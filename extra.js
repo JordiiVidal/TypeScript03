@@ -5,7 +5,7 @@ var Extra = /** @class */ (function () {
         this.url = url;
     }
     Extra.prototype.getHtml = function () {
-        return "<div class='col-2'><div class='card' style='width:100%;'><img class='card-img-top' src='" + this.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : " + this.nombre + "</h5><p class='card-text'>Precio : " + this.precio + "</p></div></div></div>";
+        return "<div class='col-3'><div class='card' style='width:100%;'><img class='card-img-top' src='" + this.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : " + this.nombre + "</h5><p class='card-text'>Precio : " + this.precio + " $</p></div></div></div>";
     };
     return Extra;
 }());
@@ -20,8 +20,8 @@ var Coche = /** @class */ (function () {
         this.extras.push(extra);
     };
     Coche.prototype.getHtml = function () {
-        var html = "<div class='card col-4' style='width: 18rem;'><img class='card-img-top' src='" + extra.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + this.nombre + "</h5>" + this.velocidad + "</div></div>";
-        html += "<div clas='col-8' style='padding:20px;'><h3>Extas</h3><div class='card-group'>";
+        var html = "<div class='card col-4' style='width: 18rem;margin:10px 0 10px 0'><img class='card-img-top' src='" + extra.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>" + this.nombre + "</h5>" + this.velocidad + "</div></div>";
+        html += "<div class='col-8' style='padding:20px;'><h3>Extas</h3><div class='card-group' style='border: 1px solid black;'>";
         for (var _i = 0, _a = this.extras; _i < _a.length; _i++) {
             var extra_1 = _a[_i];
             html += "<div class='card' style='width: 18rem;margin:10px;'><img class='card-img-top' src='" + extra_1.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : " + extra_1.nombre + "</h5><p class='card-text'>Precio : " + extra_1.precio + "</p></div></div>";
@@ -31,13 +31,31 @@ var Coche = /** @class */ (function () {
     };
     return Coche;
 }());
+var containerE = document.getElementById("extras");
+var containerC = document.getElementById("coches");
+var extrasDisponibles = Array();
 var extra = new Extra(12, 'Bolso Gucci', 'assets/gucci.jpg');
 var extra2 = new Extra(12, 'Cinturon Gucci', 'assets/gucci.jpg');
-var container = document.getElementById("extras");
-var container2 = document.getElementById("coches");
-container.innerHTML = extra.getHtml();
-container.innerHTML += extra2.getHtml();
+extrasDisponibles.push(extra);
+extrasDisponibles.push(extra2);
+function mostrarExtras() {
+    containerE.innerHTML = '';
+    for (var _i = 0, extrasDisponibles_1 = extrasDisponibles; _i < extrasDisponibles_1.length; _i++) {
+        var extra = extrasDisponibles_1[_i];
+        containerE.innerHTML += extra.getHtml();
+    }
+}
+mostrarExtras();
+var cochesDisponibles = Array();
+cochesDisponibles = [];
 var coche = new Coche("Golf IV", '', 200);
-coche.addExtra(extra);
-coche.addExtra(extra2);
-container2.innerHTML = coche.getHtml();
+var coche2 = new Coche("GolfIV", '', 200);
+cochesDisponibles[coche.nombre] = coche;
+cochesDisponibles[coche2.nombre] = coche2;
+function mostrarCoches() {
+    containerC.innerHTML = '';
+    for (var nombre in cochesDisponibles) {
+        containerC.innerHTML += cochesDisponibles[nombre].getHtml();
+    }
+}
+mostrarCoches();
