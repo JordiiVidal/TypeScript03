@@ -24,7 +24,7 @@ var Coche = /** @class */ (function () {
         html += "<div class='col-8' style='padding:20px;'><h3>Extas</h3><div class='card-group' style='border: 1px solid black;'>";
         for (var _i = 0, _a = this.extras; _i < _a.length; _i++) {
             var extra_1 = _a[_i];
-            html += "<div class='card' style='width: 18rem;margin:10px;'><img class='card-img-top' src='" + extra_1.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : " + extra_1.nombre + "</h5><p class='card-text'>Precio : " + extra_1.precio + "</p></div></div>";
+            html += "<div class='card' style='max-width: 25%;margin:10px;'><img class='card-img-top' src='" + extra_1.url + "' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : " + extra_1.nombre + "</h5><p class='card-text'>Precio : " + extra_1.precio + "</p></div></div>";
         }
         html += "</div>";
         return html;
@@ -33,6 +33,11 @@ var Coche = /** @class */ (function () {
 }());
 var containerE = document.getElementById("extras");
 var containerC = document.getElementById("coches");
+/**BOTONES SHOW DIV EXTRA */
+var btnshowAdd = document.getElementById("btnAddE");
+var btnshowDel = document.getElementById("btnDelE");
+btnshowAdd.addEventListener('click', shownewExtra, false);
+btnshowDel.addEventListener('click', showdeleteExtra, false);
 var extrasDisponibles = Array();
 var extra = new Extra(12, 'Bolso Gucci', 'assets/gucci.jpg');
 var extra2 = new Extra(12, 'Cinturon Gucci', 'assets/gucci.jpg');
@@ -45,11 +50,11 @@ function mostrarExtras() {
         containerE.innerHTML += extra.getHtml();
     }
 }
-mostrarExtras();
 var cochesDisponibles = Array();
 cochesDisponibles = [];
 var coche = new Coche("Golf IV", '', 200);
 var coche2 = new Coche("GolfIV", '', 200);
+coche.addExtra(extra);
 cochesDisponibles[coche.nombre] = coche;
 cochesDisponibles[coche2.nombre] = coche2;
 function mostrarCoches() {
@@ -58,4 +63,18 @@ function mostrarCoches() {
         containerC.innerHTML += cochesDisponibles[nombre].getHtml();
     }
 }
+mostrarExtras();
 mostrarCoches();
+/*Funciones Botones*/
+function shownewExtra() {
+    var divAdd = document.getElementById("GestionAE");
+    var divDelete = document.getElementById("GestionDE");
+    divAdd.hidden = !divAdd.hidden;
+    divDelete.hidden = true;
+}
+function showdeleteExtra() {
+    var divAdd = document.getElementById("GestionAE");
+    var divDelete = document.getElementById("GestionDE");
+    divAdd.hidden = true;
+    divDelete.hidden = !divDelete.hidden;
+}
