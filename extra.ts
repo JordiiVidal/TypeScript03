@@ -12,7 +12,7 @@ class Extra{
     }
 
     getHtml(){
-        return "<div class='col-3'><div class='card' style='width:100%;'><img class='card-img-top' src='"+this.url+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : "+this.nombre+"</h5><p class='card-text'>Precio : "+this.precio+" $</p></div></div></div>";
+        return "<div class='col-3'><div class='card' style='width:100%;'><img class='card-img-top' style='height:250px;' src='"+this.url+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : "+this.nombre+"</h5><p class='card-text'>Precio : "+this.precio+" $</p></div></div></div>";
     }
 }
 
