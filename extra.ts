@@ -33,7 +33,7 @@ class Coche{
         this.extras.push(extra);
     }
     getHtml(){
-        var html = "<div class='card col-4' style='width: 18rem;margin:10px 0 10px 0'><img class='card-img-top' src='"+extra.url+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>"+this.nombre+"</h5>"+this.velocidad+"</div></div>";
+        var html = "<div class='card col-4' style='width: 18rem;margin:10px 0 10px 0'><img class='card-img-top' src='"+this.url+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>"+this.nombre+"</h5>"+this.velocidad+"</div></div>";
         html += "<div class='col-8' style='padding:20px;'><h3>Extas</h3><div class='card-group' style='border: 1px solid black;'>";
         for (let extra of this.extras) {
             html +="<div class='card' style='max-width: 25%;margin:10px;'><img class='card-img-top' src='"+extra.url+"' alt='Card image cap'><div class='card-body'><h5 class='card-title'>Extra : "+extra.nombre+"</h5><p class='card-text'>Precio : "+extra.precio+"</p></div></div>";
@@ -51,8 +51,8 @@ let containerC = <HTMLElement>document.getElementById("coches");
 
 var extrasDisponibles = Array<Extra>();
 
-let extra = new Extra(12,'Bolso Gucci','assets/gucci.jpg');
-let extra2 = new Extra(12,'Cinturon Gucci','assets/gucci.jpg');
+let extra = new Extra(12,'AireBag','assets/airebag.jpg');
+let extra2 = new Extra(12,'Cuero','assets/cuero.jpg');
 
 addSelectExtra(extra.nombre);
 addSelectExtra(extra2.nombre);
@@ -70,8 +70,8 @@ function mostrarExtras(){
 var cochesDisponibles = Array<Coche>();
 cochesDisponibles = [];
 
-let coche = new Coche("Mercedes",'', 200);
-let coche2 = new Coche("GolfV",'', 200);
+let coche = new Coche("Mercedes",'assets/meercedes.jpg', 200);
+let coche2 = new Coche("GolfV",'assets/golf.jpg', 200);
 
 coche.addExtra(extra);
 
