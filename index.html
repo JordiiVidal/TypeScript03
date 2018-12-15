@@ -41,10 +41,16 @@
             <div class="col-3 offset-6 bg-dark" id="GestionAE" style="padding: 25px;color: white; border-radius: 5px;"hidden>
                 <div class="row">
                     <div class="col-12">
-                        <label>Precio : <input type="number" placeholder="precio"></label> <label>Imagen :<select id="imagenextra"><option value="gucci">Gucci</option></select></label>
+                        <label>Nombre</label><input type="text" class="form-control" id="nombre-extra" name="nombre-extra" placeholder="nombre">
+                    </div>
+                    <div class="col-6">
+                        <label>Precio : <input type="number" class="form-control" id="precio-extra" name="precio-extra" placeholder="precio"></label>
+                    </div>
+                    <div class="col-6">
+                        <label>Imagen :<select id="imagen-extra" class="form-control" name="imagen-extra"><option value="assets/gucci.jpg">Gucci</option></select></label>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-block" style="background: #00e676;color: white;">Add Extra</button>
+                        <button class="btn btn-block" id="addExtra" style="background: #00e676;color: white;">Add Extra</button>
                     </div>
                 </div>
             </div>
@@ -52,10 +58,10 @@
             <div class="col-2 offset-9 bg-dark" id="GestionDE" style="padding: 25px;color: white; border-radius: 5px;" hidden>
                 <div class="row">
                     <div class="col-12">
-                        <label>Id : <input type="number" placeholder="precio"></label>
+                        <label>Id</label><input type="number" class="form-control" id="posicion-extra" placeholder="posicion">
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-block" style="background: #f44336;color: white;">Delete Extra</button>
+                        <button class="btn btn-block" id="deleteExtra" style="background: #f44336;color: white;">Delete Extra</button>
                     </div>
                 </div>
             </div>
@@ -74,11 +80,48 @@
         </div>
         <div class="row">
 
-            <div class="col-10 offset-1 text-center" style="padding:20px 0 20px 0;">
-
+            <div class="col-3 offset-1 text-center" style="padding:20px 0 20px 0;">
                 <h3>COCHES</h3>
-
             </div>
+
+            <div class="col-2 offset-3" style="padding: 20px">
+                <button class="btn btn-block" id="btnAddC" style="background: #00e676;color: white;border:1px solid gray;"><i class="fas fa-plus-circle"></i> New Coche</button>
+            </div>
+
+            <div class="col-2" style="padding: 20px">
+                <button class="btn btn-primary btn-block" id="btnAddEC" style="color: white;border:1px solid gray;"><i class="fas fa-plus-circle"></i> ADD Extra Coche</button>
+            </div>
+
+            <div class="col-3 offset-6 bg-dark" id="GestionAC" style="padding: 25px;color: white; border-radius: 5px;"hidden>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Nombre</label><input type="text" class="form-control" id="nombre-coche" name="nombre-coche" placeholder="nombre">
+                    </div>
+                    <div class="col-6">
+                        <label>Velocidad : <input type="number" class="form-control" id="velocidad-coche" name="precio-coche" placeholder="km/h"></label>
+                    </div>
+                    <div class="col-6">
+                        <label>Imagen :<select id="imagen-coche" class="form-control" name="imagen-coche"><option value="assets/gucci.jpg">Gucci</option></select></label>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-block" id="addCoche" style="background: #00e676;color: white;">Add Coche</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 offset-7 bg-dark" id="GestionAEC" style="padding: 25px;color: white; border-radius: 5px;"hidden>
+                    <div class="row">
+                        <div class="col-12">
+                            <label>Extra </label><select id="select-extra" class="form-control" name="select-extra"></select>                       
+                        </div>
+                        <div class="col-12">
+                            <label>Coche </label><select id="select-coche" class="form-control" name="select-coche"></select>                        
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-block" id="addExtraCoche" style="color: white;">Add Extra Coche</button>
+                        </div>
+                    </div>
+                </div>
 
             <div class="col-10 offset-1" style="padding: 50px 0 50px 0;">
 

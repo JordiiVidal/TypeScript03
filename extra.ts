@@ -49,22 +49,16 @@ class Coche{
 let containerE = <HTMLElement>document.getElementById("extras");
 let containerC = <HTMLElement>document.getElementById("coches");
 
-/**BOTONES SHOW DIV EXTRA */
-let btnshowAdd = <HTMLElement>document.getElementById("btnAddE");
-let btnshowDel = <HTMLElement>document.getElementById("btnDelE");
-
-btnshowAdd.addEventListener('click',shownewExtra,false);
-btnshowDel.addEventListener('click',showdeleteExtra,false);
-
-
 var extrasDisponibles = Array<Extra>();
 
 let extra = new Extra(12,'Bolso Gucci','assets/gucci.jpg');
 let extra2 = new Extra(12,'Cinturon Gucci','assets/gucci.jpg');
 
+addSelectExtra(extra.nombre);
+addSelectExtra(extra2.nombre);
+
 extrasDisponibles.push(extra);
 extrasDisponibles.push(extra2);
-
 
 function mostrarExtras(){
     containerE.innerHTML = '';
@@ -76,12 +70,16 @@ function mostrarExtras(){
 var cochesDisponibles = Array<Coche>();
 cochesDisponibles = [];
 
-let coche = new Coche("Golf IV",'', 200);
-let coche2 = new Coche("GolfIV",'', 200);
+let coche = new Coche("Mercedes",'', 200);
+let coche2 = new Coche("GolfV",'', 200);
+
 coche.addExtra(extra);
 
 cochesDisponibles[coche.nombre] = coche;
 cochesDisponibles[coche2.nombre] = coche2;
+
+addSelectCoche(coche.nombre);
+addSelectCoche(coche2.nombre);
 
 function mostrarCoches(){
     containerC.innerHTML = '';
@@ -93,22 +91,164 @@ function mostrarCoches(){
     }
 }
 
+/**BOTONES SHOW DIV EXTRA */
+let btnshowAdd = <HTMLElement>document.getElementById("btnAddE");
+let btnshowDel = <HTMLElement>document.getElementById("btnDelE");
+
+/**BOTONES ADD AND DELETE EXTRA */
+let btnAddExtra = <HTMLElement>document.getElementById("addExtra");
+let btnDelExtra = <HTMLElement>document.getElementById("deleteExtra");
+
+btnshowAdd.addEventListener('click',shownewExtra,false);
+btnshowDel.addEventListener('click',showdeleteExtra,false);
+
+btnAddExtra.addEventListener('click',addExtra,false);
+btnDelExtra.addEventListener('click',deleteExtra,false);
+
+//*BOTONES SHOW DIV COCHE*/
+
+let btnshowAddC = <HTMLElement>document.getElementById("btnAddC");
+let btnshowAddEC = <HTMLElement>document.getElementById("btnAddEC");
+
+btnshowAddC.addEventListener('click',shownewCoche,false);
+btnshowAddEC.addEventListener('click',showaddExtraCoche,false);
+
+/**BOTONES ADD COCHE */
+let btnAddCoche = <HTMLElement>document.getElementById("addCoche");
+let btnAddExtraCoche = <HTMLElement>document.getElementById("addExtraCoche");
+btnAddCoche.addEventListener('click',addCoche,false);
+btnAddExtraCoche.addEventListener('click',addExtraCoche,false);
+
 mostrarExtras();
 mostrarCoches();
 
+
 /*Funciones Botones*/
 
-function shownewExtra(){
-    let divAdd = <HTMLElement>document.getElementById("GestionAE");
-    let divDelete = <HTMLElement>document.getElementById("GestionDE");
-    divAdd.hidden = !divAdd.hidden;
-    divDelete.hidden = true;
-}
-function showdeleteExtra(){
-    let divAdd = <HTMLElement>document.getElementById("GestionAE");
-    let divDelete = <HTMLElement>document.getElementById("GestionDE");
-    divAdd.hidden = true;
-    divDelete.hidden = !divDelete.hidden;
-}
+    /**Extra */
+    function shownewExtra(){
+        let divAdd = <HTMLElement>document.getElementById("GestionAE");
+        let divDelete = <HTMLElement>document.getElementById("GestionDE");
+        divAdd.hidden = !divAdd.hidden;
+        divDelete.hidden = true;
+    }
+    function showdeleteExtra(){
+        let divAdd = <HTMLElement>document.getElementById("GestionAE");
+        let divDelete = <HTMLElement>document.getElementById("GestionDE");
+        divAdd.hidden = true;
+        divDelete.hidden = !divDelete.hidden;
+    }
 
+    function addExtra(){
+
+        let inputNombre: HTMLInputElement = <HTMLInputElement>document.getElementById('nombre-extra');
+        let inputPrecio: HTMLInputElement = <HTMLInputElement>document.getElementById('precio-extra');
+        let selectImagen:HTMLSelectElement = <HTMLSelectElement>document.getElementById('imagen-extra');
+
+        let extra = new Extra(parseInt(inputPrecio.value),inputNombre.value,selectImagen.value);
+
+        extrasDisponibles.push(extra);
+
+        addSelectExtra(extra.nombre);
+
+        mostrarExtras();
+    }
+
+    function deleteExtra(){
+
+        let inputPosicion: HTMLInputElement = <HTMLInputElement>document.getElementById('posicion-extra');
+
+        extrasDisponibles.splice(parseInt(inputPosicion.value), 1);
+
+        deleteSelectExtra(inputPosicion.value);
+
+        mostrarExtras();
+
+    }
+
+    /**Coche */
+
+    function shownewCoche(){
+
+        let divAdd = <HTMLElement>document.getElementById("GestionAC");
+        let divAddE = <HTMLElement>document.getElementById("GestionAEC");
+        divAdd.hidden = !divAdd.hidden;
+
+        divAddE.hidden = true;
+
+    }
+    
+    function showaddExtraCoche(){
+
+        let divAdd = <HTMLElement>document.getElementById("GestionAC");
+        let divAddE = <HTMLElement>document.getElementById("GestionAEC");
+        divAdd.hidden = true;
+        divAddE.hidden = !divAddE.hidden;
+
+    }
+
+    function addCoche(){
+
+        let inputNombre: HTMLInputElement = <HTMLInputElement>document.getElementById('nombre-coche');
+        let inputVelocidad: HTMLInputElement = <HTMLInputElement>document.getElementById('velocidad-coche');
+        let selectImagen:HTMLSelectElement = <HTMLSelectElement>document.getElementById('imagen-coche');
+
+        let coche = new Coche(inputNombre.value,selectImagen.value, parseInt(inputVelocidad.value));
+
+        cochesDisponibles[coche.nombre] = coche;
+
+        addSelectCoche(coche.nombre);
+
+        mostrarCoches();
+    }
+
+    function addSelectExtra(nombre:string){
+
+        let selectExtra:HTMLSelectElement = <HTMLSelectElement>document.getElementById('select-extra');
+
+        var option = document.createElement('option');
+        option.value = nombre;
+        option.text = nombre;
+
+        selectExtra.add(option);
+
+    }
+    function deleteSelectExtra(index:string){
+
+        let selectExtra:HTMLSelectElement = <HTMLSelectElement>document.getElementById('select-extra');
+
+        selectExtra.remove(parseInt(index));
+    }
+    function addSelectCoche(nombre){
+
+        var selectCoche:HTMLSelectElement = <HTMLSelectElement>document.getElementById('select-coche');
+    
+            var option = document.createElement('option');
+            option.value = nombre;
+            option.text = nombre;
+    
+            selectCoche.add(option);
+
+    }
+
+    function addExtraCoche(){
+
+        let selectExtra:HTMLSelectElement = <HTMLSelectElement>document.getElementById('select-extra');
+        let selectCoche:HTMLSelectElement = <HTMLSelectElement>document.getElementById('select-coche');
+
+        for(let key in cochesDisponibles){
+            if(cochesDisponibles[key].nombre === selectCoche.value){
+                for(var extra of extrasDisponibles){
+                    if(extra.nombre === selectExtra.value){
+                        cochesDisponibles[key].addExtra(extra);
+                    }
+                }
+            }
+        }
+
+        mostrarCoches();
+
+
+    }
+    
 
